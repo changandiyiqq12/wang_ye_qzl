@@ -77,7 +77,7 @@
             <div class="contact-form">
                 <h3 style="margin-bottom: 1rem;">快速留言</h3>
                 <p style="color: var(--color-text-muted); margin-bottom: 1rem; font-size: 0.9rem;">留下您的联系方式和需求，我们会尽快回复。</p>
-                <form id="contactForm" action="https://formspree.io/f/mldjddrn" method="POST">
+                <form id="contactForm">
                     <div class="form-group">
                         <label for="name">您的称呼 *</label>
                         <input type="text" id="name" name="name" required placeholder="请输入您的称呼">
@@ -100,7 +100,10 @@
                         <label for="message">需求描述</label>
                         <textarea id="message" name="message" placeholder="请简单描述您的问题或需求，方便我们提前了解情况"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width:100%;">提交留言</button>
+                    <div style="display: flex; gap: 0.75rem;">
+                        <button type="submit" class="btn btn-primary" style="flex:1;">提交留言</button>
+                        <button type="button" id="btnMailto" class="btn btn-outline" style="flex:1; color: var(--color-accent); border-color: var(--color-accent); display:none;">通过邮件发送</button>
+                    </div>
                 </form>
                 <p id="formMsg" style="margin-top: 0.75rem; font-size: 0.9rem; display: none;"></p>
             </div>
@@ -118,17 +121,56 @@
 </footer>
 
 <script>
+/* 双模式留言表单：
+   模式1（线上 github.io）：通过 Formspree 发送到邮箱
+   模式2（本地开发）：通过 mailto 链接打开系统邮件客户端 */
+
+var IS_ONLINE = window.location.hostname.indexOf('github.io') !== -1;
+var FORMSPREE_ID = 'mldjddrn';    // Formspree 表单ID（上线后替换为真实ID）
+var EMAIL_TO = '18303825778@163.com';
+
 var form = document.getElementById('contactForm');
+var btnMailto = document.getElementById('btnMailto');
+
+// 本地模式：显示邮件按钮
+if (!IS_ONLINE) {
+    btnMailto.style.display = '';
+    btnMailto.addEventListener('click', function() {
+        var name = document.getElementById('name').value || '未填';
+        var phone = document.getElementById('phone').value || '未填';
+        var type = document.getElementById('type').value || '未选择';
+        var msg = document.getElementById('message').value || '未填';
+        var subject = '【齐工水电】' + (type || '新留言') + ' - ' + name;
+        var body = '称呼：' + name + '\n'
+                 + '电话：' + phone + '\n'
+                 + '服务类型：' + type + '\n'
+                 + '需求描述：' + msg + '\n';
+        window.location.href = 'mailto:' + EMAIL_TO
+            + '?subject=' + encodeURIComponent(subject)
+            + '&body=' + encodeURIComponent(body);
+    });
+}
+
 form.addEventListener('submit', function(e) {
     e.preventDefault();
     var btn = form.querySelector('button[type="submit"]');
     var msg = document.getElementById('formMsg');
+
+    if (!IS_ONLINE) {
+        // 本地模式：提示用邮件按钮
+        msg.style.display = 'block';
+        msg.style.color = '#2563eb';
+        msg.textContent = '本地模式：请点击下方"通过邮件发送"按钮，或直接拨打电话联系。';
+        return;
+    }
+
+    // 线上模式：通过 Formspree 发送
     btn.disabled = true;
     btn.textContent = '提交中...';
     msg.style.display = 'none';
 
     var data = new FormData(form);
-    fetch(form.action, {
+    fetch('https://formspree.io/f/' + FORMSPREE_ID, {
         method: 'POST',
         body: data,
         headers: { 'Accept': 'application/json' }
