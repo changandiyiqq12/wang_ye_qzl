@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="联系齐工水电服务 — 齐占林13462503959，齐利旭13461917337，新野县水电安装维修，免费上门看活报价。">
+    <title>联系我们 — 齐工水电服务</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container">
+        <a href="index.html" class="nav-logo">齐工水电服务</a>
+        <button class="hamburger" aria-label="菜单">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="services.html">服务项目</a></li>
+            <li><a href="cases.html">案例展示</a></li>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-banner">
+    <h2>联系我们</h2>
+    <p style="color: #bfdbfe; margin-top: 0.5rem;">一个电话，水电全搞定</p>
+</div>
+
+<section class="section">
+    <div class="container">
+        <div class="contact-grid">
+
+            <div class="contact-info">
+                <h3 style="margin-bottom: 1.5rem;">联系方式</h3>
+
+                <div class="contact-item">
+                    <div class="contact-icon">&#128222;</div>
+                    <div class="contact-text">
+                        <h4>齐占林（电气工程师）</h4>
+                        <p><a href="tel:13462503959">13462503959</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">&#128222;</div>
+                    <div class="contact-text">
+                        <h4>齐利旭（水利工程师）</h4>
+                        <p><a href="tel:13461917337">13461917337</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">&#127968;</div>
+                    <div class="contact-text">
+                        <h4>服务区域</h4>
+                        <p>河南省南阳市新野县及周边乡镇</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">&#128338;</div>
+                    <div class="contact-text">
+                        <h4>服务时间</h4>
+                        <p>每天 7:00 - 20:00（紧急情况随时联系）</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1.5rem; padding: 1rem; background-color: #f0fdf4; border-radius: var(--radius); border: 1px solid #bbf7d0;">
+                    <p style="color: #166534; font-size: 0.9rem;">
+                        <strong>&#128161; 温馨提示：</strong>小问题可以先打电话描述，我们电话里告诉您大概什么问题和价格范围。大工程我们免费上门看活，出方案后再报价。
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3 style="margin-bottom: 1rem;">快速留言</h3>
+                <p style="color: var(--color-text-muted); margin-bottom: 1rem; font-size: 0.9rem;">留下您的联系方式和需求，我们会尽快回复。</p>
+                <form id="contactForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">您的称呼 *</label>
+                        <input type="text" id="name" name="name" required placeholder="请输入您的称呼">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">手机号码 *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="请输入您的手机号码">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">服务类型</label>
+                        <select id="type" name="type">
+                            <option value="">请选择服务类型</option>
+                            <option value="电力">电力服务（电路、家电、开关等）</option>
+                            <option value="水利">水利服务（水管、漏水、疏通等）</option>
+                            <option value="工程">工程类服务（单位/厂房水电工程）</option>
+                            <option value="其他">其他咨询</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">需求描述</label>
+                        <textarea id="message" name="message" placeholder="请简单描述您的问题或需求，方便我们提前了解情况"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">提交留言</button>
+                </form>
+                <p id="formMsg" style="margin-top: 0.75rem; font-size: 0.9rem; display: none;"></p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <p><strong>齐工水电服务</strong> — 新野县本地水电工程师团队</p>
+        <p style="margin-top: 0.5rem;">齐占林（电气工程师）：13462503959 &nbsp;|&nbsp; 齐利旭（水利工程师）：13461917337</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">服务范围：河南省南阳市新野县及周边 | 承接家庭水电、单位工程、装修分包</p>
+    </div>
+</footer>
+
+<script>
+function handleSubmit(event) {
+    event.preventDefault();
+    var msg = document.getElementById('formMsg');
+    msg.style.display = 'block';
+    msg.style.color = '#166534';
+    msg.textContent = '留言信息已准备好，请直接拨打电话或复制留言内容通过微信发送给我们。您也可以直接拨打上方电话进行联系。';
+}
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="齐工水电服务案例 — 学校、政府、消防等水电工程案例展示。">
+    <title>案例展示 — 齐工水电服务</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container">
+        <a href="index.html" class="nav-logo">齐工水电服务</a>
+        <button class="hamburger" aria-label="菜单">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="services.html">服务项目</a></li>
+            <li><a href="cases.html">案例展示</a></li>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-banner">
+    <h2>案例展示</h2>
+    <p style="color: #bfdbfe; margin-top: 0.5rem;">用实际项目说话，每一个工程都是口碑</p>
+</div>
+
+<section class="section">
+    <div class="container">
+
+        <div class="case-filters">
+            <button class="case-filter active" onclick="filterCases('all')">全部案例</button>
+            <button class="case-filter" onclick="filterCases('school')">学校项目</button>
+            <button class="case-filter" onclick="filterCases('government')">政府项目</button>
+            <button class="case-filter" onclick="filterCases('fire')">消防项目</button>
+        </div>
+
+        <div class="case-grid" id="caseGrid">
+            <div class="case-card" data-type="school">
+                <div class="case-img">案例照片待上传</div>
+                <div class="case-body">
+                    <span class="case-tag">学校项目</span>
+                    <h4>教学楼电气改造工程</h4>
+                    <p>完成教学楼整体电路改造，包括配电系统升级、照明布线、空调专线铺设，保障全校用电安全。</p>
+                </div>
+            </div>
+            <div class="case-card" data-type="government">
+                <div class="case-img">案例照片待上传</div>
+                <div class="case-body">
+                    <span class="case-tag">政府项目</span>
+                    <h4>办公楼水电综合工程</h4>
+                    <p>为政府办公楼提供水电一体化施工，含给排水系统改造和强弱电分离布线。</p>
+                </div>
+            </div>
+            <div class="case-card" data-type="fire">
+                <div class="case-img">案例照片待上传</div>
+                <div class="case-body">
+                    <span class="case-tag">消防项目</span>
+                    <h4>消防泵房水电配套</h4>
+                    <p>完成消防泵房电气控制系统安装及供水管道布置，通过消防部门验收。</p>
+                </div>
+            </div>
+        </div>
+
+        <p style="text-align:center; color: var(--color-text-muted); margin-top: 2rem;">
+            更多案例照片陆续更新中，如需了解详情请<a href="contact.html">联系我们</a>。
+        </p>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <p><strong>齐工水电服务</strong> — 新野县本地水电工程师团队</p>
+        <p style="margin-top: 0.5rem;">齐占林（电气工程师）：13462503959 &nbsp;|&nbsp; 齐利旭（水利工程师）：13461917337</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">服务范围：河南省南阳市新野县及周边</p>
+    </div>
+</footer>
+
+<script>
+function filterCases(type) {
+    document.querySelectorAll('.case-filter').forEach(function(btn) {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+
+    document.querySelectorAll('#caseGrid .case-card').forEach(function(card) {
+        if (type === 'all' || card.getAttribute('data-type') === type) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
